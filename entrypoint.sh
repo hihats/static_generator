@@ -12,7 +12,12 @@ ORIGIN_URL=$1
 STATUS=$(curl -s ${ORIGIN_URL} -o /dev/null -w '%{http_code}\n')
 if [ "$STATUS" = "200" ]
 then
-    wget --quiet http://${ORIGIN_URL}/sitemap.xml --output-document - | egrep -o "https?://[^<]+" | wget -i -
+    wget --quiet http://${ORIGIN_URL}/sitemap-pt-post-`date +%Y-%m`.xml \ --output-document - \
+      | grep "<loc>" \
+      | egrep -o "https?://[^<]+" \
+      | xargs -I{} echo "{} {}" \
+      | sed -e s#${ORIGIN_URL}## \
+      | xargs -n 2 sh -c 'wget --no-parent -B ${ORIGIN_URL} -I $0 -p $1'
 fi
 
 wget -r -l2 --page-requisites -q http://${ORIGIN_URL}
