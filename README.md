@@ -17,7 +17,7 @@ $ docker tag hihats/static_generator:latest ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northea
 $ docker push ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/hihats/static_generator:latest
 ```
 
-### ECRのタスクとして登録
+### ECSのタスクとして登録
 - clusterが無い場合は作成
 ```
 $ aws ecs create-cluster --cluster-name ${site_name}_fargate_cluster
@@ -64,7 +64,7 @@ $ aws ecs register-task-definition
 
 ```
 
-- Task Definition(container difinition)のCOMMANDに引数を設定すると、entorypointの引数になる
+- Task Definition(container difinition)のCOMMANDに引数を設定すると、entrypointの引数になる
 
 ### environmental variables
 ```
