@@ -3,7 +3,7 @@ This container features is to generate static files (including html, css, javasc
 It would be helpful for web site built on lower specification server.
 
 ### option
-It replaces all http links into https links for web ssl works. 
+It replaces all http links into https links for web ssl works.
 
 ## specification
 ```
@@ -30,7 +30,7 @@ $ aws ecs register-task-definition
   --task-role-arn arn:aws:iam::****:role/ecs_task_execution_role
   --execution-role-arn arn:aws:iam::****:role/ecs_task_execution_role
   --network-mode awsvpc
-  --container-definition "[
+  --container-definition '[
             {
                 "name": "static_generator",
                 "image": "****.dkr.ecr.ap-northeast-1.amazonaws.com/hihats/static_generator:latest",
@@ -58,7 +58,7 @@ $ aws ecs register-task-definition
                     }
                 }
             }
-        ]"
+        ]'
   --cpu 512
   --memory 1024
 
